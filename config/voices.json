@@ -1,0 +1,42 @@
+{
+  "Commercial": {
+    "voice_name": "Puck",
+    "description": "Upbeat, energetic voice suited for ads and promos.",
+    "director_notes": "Style: Enthusiastic and persuasive commercial announcer. Pacing: Brisk, punchy, confident. Accent: Neutral American English."
+  },
+  "Story": {
+    "voice_name": "Algieba",
+    "description": "Smooth, warm voice suited for storytelling and audiobooks.",
+    "director_notes": "Style: Warm, immersive storyteller drawing the listener into the narrative. Pacing: Measured, with natural pauses for dramatic effect. Accent: Neutral, gentle."
+  },
+  "Podcast": {
+    "voice_name": "Charon",
+    "description": "Informative, conversational voice suited for podcasts.",
+    "director_notes": "Style: Relaxed, informative podcast host chatting with a friend. Pacing: Natural conversational rhythm. Accent: Neutral American English."
+  },
+  "Narration": {
+    "voice_name": "Orus",
+    "description": "Firm, clear voice suited for documentaries and narration.",
+    "director_notes": "Style: Authoritative documentary narrator, precise and clear. Pacing: Steady and deliberate. Accent: Neutral, crisp diction."
+  },
+  "Motivational": {
+    "voice_name": "Fenrir",
+    "description": "Excitable, driving voice suited for motivational content.",
+    "director_notes": "Style: Inspiring motivational speaker building energy and conviction. Pacing: Builds from steady to powerful emphasis. Accent: Neutral, strong projection."
+  },
+  "Audiobook": {
+    "voice_name": "Vindemiatrix",
+    "description": "Gentle, easy-listening voice suited for long-form audiobooks.",
+    "director_notes": "Style: Gentle, calm audiobook narrator, easy to listen to for long sessions. Pacing: Even and unhurried. Accent: Neutral, soft."
+  },
+  "Documentary": {
+    "voice_name": "Iapetus",
+    "description": "Clear, informative voice suited for documentary voice-over.",
+    "director_notes": "Style: Clear, factual documentary voice-over. Pacing: Deliberate, allowing information to land. Accent: Neutral, articulate."
+  },
+  "Conversation": {
+    "voice_name": "Zubenelgenubi",
+    "description": "Casual, friendly voice suited for dialogue-style content.",
+    "director_notes": "Style: Casual, friendly conversational tone, as if speaking to a friend. Pacing: Natural, relaxed. Accent: Neutral, informal."
+  }
+}

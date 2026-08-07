@@ -1,0 +1,27 @@
+# Environment variables
+.env
+
+# Python virtual environment
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+logs/
+
+# Generated audio
+output/
+*.wav
+*.mp3
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
