@@ -88,7 +88,8 @@ class AppConfig:
     # --- Audio output format (PCM produced by Gemini TTS) ------------------
     sample_rate: int = 24000
     channels: int = 1
-    sample_width: int = 2  # bytes per sample (16-bit PCM)
+    sample_width: int = 2 # bytes per sample (16-bit PCM)
+    mp3_bitrate: int = 128
 
     @classmethod
     def load(cls) -> "AppConfig":
@@ -114,6 +115,7 @@ class AppConfig:
             retry_delay_seconds=_env_float("RETRY_DELAY_SECONDS", 2.0),
             request_timeout=_env_int("REQUEST_TIMEOUT", 60),
             max_chunk_chars=_env_int("MAX_CHUNK_CHARS", 1800),
+            mp3_bitrate=_env_int("MP3_BITRATE", 128),
         )
         config.ensure_directories()
         return config

@@ -8,9 +8,9 @@ text-to-speech model, via the `google-genai` SDK's Interactions API.
 
 - Generate speech from a single text file, or batch-process every `.txt`
   file in `input/`.
-- Output filename always matches the input filename (`book1.txt` -> `book1.wav`).
+- Output filenames always match the input filename (`book1.txt` -> `book1.wav` and `book1.mp3`).
 - Long scripts are automatically split into safe chunks and the resulting
-  audio is stitched into **one** final `.wav` file — never dozens of files.
+  audio is stitched into **two** final `.wav and mp3` file — never dozens of files.
 - Streaming generation with a live progress bar.
 - Automatic retry with exponential backoff on transient API failures.
 - Friendly, human-readable error messages.
@@ -18,6 +18,8 @@ text-to-speech model, via the `google-genai` SDK's Interactions API.
 - Full Unicode support, including Hindi and English, in the same run.
 - Structured logging to `logs/app.log` (timestamp, filename, duration, status).
 - Voice and style ("Director's Notes") presets in `config/voices.json`.
+- Export generated speech as WAV and MP3.
+- Configurable MP3 bitrate via MP3_BITRATE.
 
 ## Project structure
 
@@ -27,7 +29,7 @@ Gemini-TTS/
 │   ├── script.txt
 │   ├── video1.txt
 │   └── video2.txt
-├── output/              # Generated .wav files land here
+├── output/              # Generated .wav .mp3 files land here
 ├── config/
 │   └── voices.json       # Named voice/style presets
 ├── logs/
@@ -107,7 +109,7 @@ Choice:
 ### 1. Generate one file
 
 Enter a filename that exists in `input/`, e.g. `book1.txt`. The app reads
-`input/book1.txt` and writes `output/book1.wav`.
+`input/book1.txt` and writes `output/book1.wav and book1.mp3`.
 
 ### 2. Batch generate
 

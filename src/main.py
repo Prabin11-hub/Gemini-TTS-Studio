@@ -105,7 +105,10 @@ def handle_single_file(config: AppConfig, client: GeminiTTSClient, state: MenuSt
             on_progress=_on_progress,
         )
         duration = time.monotonic() - start_time
-        print(f"Completed. Saved to: {output_path}")
+        mp3_output_path = output_path.with_suffix(".mp3")
+        print(f"Completed.")
+        print(f"  WAV: {output_path}")
+        print(f"  MP3: {mp3_output_path}")
         log_job_result(logger, input_path.name, duration, status="SUCCESS")
 
     except TTSStudioError as exc:

@@ -36,7 +36,12 @@ from tenacity import (
 from config import AppConfig
 from exceptions import APIRequestError, AudioProcessingError, RetryExhaustedError
 from logger import get_logger
-from utils import audio_duration_seconds, chunk_text, write_wave_file
+from utils import (
+    audio_duration_seconds,
+    chunk_text,
+    write_mp3_file,
+    write_wave_file,
+)
 
 logger = get_logger(__name__)
 
@@ -123,6 +128,17 @@ class GeminiTTSClient:
             sample_width=self.config.sample_width,
         )
 
+        mp3_output_path = output_path.with_suffix(".mp3")
+
+        write_mp3_file(
+            output_path=mp3_output_path,
+            pcm_data=combined_pcm,
+            channels=self.config.channels,
+            sample_rate=self.config.sample_rate,
+            sample_width=self.config.sample_width,
+            bitrate=self.config.mp3_bitrate,
+        )
+    
         duration = audio_duration_seconds(
             pcm_byte_count=len(combined_pcm),
             sample_rate=self.config.sample_rate,

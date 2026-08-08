@@ -13,6 +13,7 @@ import sys
 import wave
 from pathlib import Path
 from typing import List
+import lameenc 
 
 from exceptions import AudioProcessingError, EmptyTextError, FileValidationError
 
@@ -207,6 +208,61 @@ def write_wave_file(
             wf.writeframes(pcm_data)
     except (OSError, wave.Error) as exc:
         raise AudioProcessingError(f"Failed to write '{output_path}': {exc}") from exc
+
+def write_mp3_file(
+    output_path: Path,
+    pcm_data: bytes,
+    channels: int,
+    sample_rate: int,
+    sample_width: int,
+    bitrate: int = 128,
+) -> None:
+    """
+    Encode raw 16-bit PCM audio data into an MP3 file.
+
+    Args:
+        output_path: Destination .mp3 file path.
+        pcm_data: Raw PCM audio bytes.
+        channels: Number of audio channels.
+        sample_rate: PCM sample rate in Hz.
+        sample_width: Bytes per sample. Must be 2 for 16-bit PCM.
+        bitrate: MP3 bitrate in kbps.
+
+    Raises:
+        AudioProcessingError: If MP3 encoding or writing fails.
+    """
+
+    if not pcm_data:
+        raise AudioProcessingError(
+            "No audio data was generated for MP3 encoding."
+        )
+
+    if sample_width != 2:
+        raise AudioProcessingError(
+            "MP3 encoding currently requires 16-bit PCM audio."
+        )
+
+    try:
+        ensure_dir(output_path.parent)
+
+        encoder = lameenc.Encoder()
+
+        encoder.set_in_sample_rate(sample_rate)
+        encoder.set_channels(channels)
+        encoder.set_bit_rate(bitrate)
+        encoder.set_quality(2)
+        encoder.silence()
+
+        mp3_data = encoder.encode(pcm_data)
+        mp3_data += encoder.flush()
+
+        with open(output_path, "wb") as f:
+            f.write(mp3_data)
+
+    except Exception as exc:
+        raise AudioProcessingError(
+            f"Failed to write MP3 file '{output_path}': {exc}"
+        ) from exc
 
 
 def audio_duration_seconds(pcm_byte_count: int, sample_rate: int, sample_width: int, channels: int) -> float:
